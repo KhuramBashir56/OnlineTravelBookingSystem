@@ -85,9 +85,8 @@
                 <h2>Destinations</h2>
                 <p>Travel has helped us to understand the meaning of life and it has helped us become better people. Each time we travel, we see the world with new eyes.</p>
             </div>
-            <div class="row">
-                <x-web-app.package-card :data="'data'"/>
-            </div>
+            <livewire:web-app.pages.home.packages />
+            
         </div>
     </section>
 
