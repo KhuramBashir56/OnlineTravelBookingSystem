@@ -2069,7 +2069,7 @@ progress {
 .form-control:focus {
   color: #3e5569;
   background-color: #fff;
-  border-color: #00cc00;
+  border-color: #fd5056;
   outline: 0;
   box-shadow: transparent
 }
@@ -2247,7 +2247,7 @@ textarea.form-control-lg {
 }
 
 .form-select:focus {
-  border-color: #00cc00;
+  border-color: #fd5056;
   outline: 0;
   box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.25)
 }
@@ -2336,8 +2336,8 @@ textarea.form-control-lg {
 }
 
 .form-check-input:checked {
-  background-color: #00cc00;
-  border-color: #00cc00
+  background-color: #fd5056;
+  border-color: #fd5056
 }
 
 .form-check-input:checked[type=checkbox] {
@@ -2876,12 +2876,12 @@ fieldset:disabled .btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #00cc00;
+  background-color: #fd5056;
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #009c00;
+  background-color: #e0393e;
 }
 
 
@@ -2891,7 +2891,7 @@ fieldset:disabled .btn {
 .btn-primary:active,
 .show>.btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: #00cc00;
+  background-color: #fd5056;
 }
 
 
@@ -4067,7 +4067,7 @@ fieldset:disabled .btn {
   padding: 0.65rem 1rem;
   clear: both;
   font-weight: 400;
-  color: #00cc00;
+  color: #fd5056;
   text-align: inherit;
   text-decoration: none;
   white-space: nowrap;
@@ -4078,14 +4078,14 @@ fieldset:disabled .btn {
 .dropdown-item:focus,
 .dropdown-item:hover {
   color: #fff;
-  background-color: #00cc00
+  background-color: #fd5056
 }
 
 .dropdown-item.active,
 .dropdown-item:active {
   color: #fff;
   text-decoration: none;
-  background-color: #00cc00
+  background-color: #fd5056
 }
 
 .dropdown-item.disabled,
@@ -5010,10 +5010,10 @@ fieldset:disabled .btn {
   position: relative;
   font-weight: bold;
   display: block;
-  color: #00cc00;
+  color: #fd5056;
   text-decoration: none;
   background-color: #fff;
-  border: 1px solid #00cc00;
+  border: 1px solid #fd5056;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out
 }
 
@@ -5026,14 +5026,14 @@ fieldset:disabled .btn {
 .page-link:hover {
   z-index: 2;
   color: #fff;
-  background-color: #00cc00;
-  border-color: #00cc00
+  background-color: #fd5056;
+  border-color: #fd5056
 }
 
 .page-link:focus {
   z-index: 3;
   color: #fff;
-  background-color: #00cc00;
+  background-color: #fd5056;
   outline: 0;
   box-shadow: transparent
 }
@@ -5045,8 +5045,8 @@ fieldset:disabled .btn {
 .page-item.active .page-link {
   z-index: 3;
   color: #fff;
-  background-color: #00cc00;
-  border-color: #00cc00
+  background-color: #fd5056;
+  border-color: #fd5056
 }
 
 .page-item.disabled .page-link {
@@ -5829,7 +5829,7 @@ fieldset:disabled .btn {
   height: 100%;
   overflow: auto;
   outline: 0;
-  background-color: #00cc0058;
+  background-color: #fd505658;
 }
 
 .modal-dialog {
@@ -5927,7 +5927,7 @@ fieldset:disabled .btn {
 .modal-title {
   margin-bottom: 0;
   line-height: 1.5;
-  color: #00cc00;
+  color: #fd5056;
 }
 
 .modal-body {
@@ -11217,12 +11217,12 @@ html[dir=ltr] body .p-l-0 {
 #main-wrapper {}
 
 #main-wrapper .topbar .top-navbar .navbar-header[data-logobg=skin5] {
-  background: #00cc00
+  background: #fd5056
 }
 
 #main-wrapper .topbar .navbar-collapse[data-navbarbg=skin5],
 #main-wrapper .topbar[data-navbarbg=skin5] {
-  background: #00cc00
+  background: #fd5056
 }
 
 #main-wrapper .left-sidebar[data-sidebarbg=skin5],
@@ -11995,7 +11995,7 @@ select.form-select.form-control-line {
 }
 
 #navbarSupportedContent {
-  background: #00cc00 !important
+  background: #fd5056 !important
 }
 
 .search-box .app-search {
@@ -12142,7 +12142,7 @@ select.form-select.form-control-line {
 
 .page-breadcrumb .page-title {
   margin-bottom: 0px;
-  color: #00cc00;
+  color: #fd5056;
 }
 
 .page-breadcrumb .breadcrumb {
@@ -12203,11 +12203,11 @@ select.form-select.form-control-line {
 .sidebar-nav ul .sidebar-item .sidebar-link.active,
 .sidebar-nav ul .sidebar-item .sidebar-link:hover {
   opacity: 1;
-  background-color: #00cc00;
+  background-color: #fd5056;
 }
 
 .sidebar-nav ul .sidebar-item.selected>.sidebar-link {
-  background: #009c00;
+  background: #e0393e;
   opacity: 1;
 }
 
@@ -15234,7 +15234,7 @@ label {
 }
 
 .text-main {
-  color: #00cc00;
+  color: #fd5056;
 }
 
 .my-alert {
@@ -15298,7 +15298,7 @@ label {
 
 /* Visual styles */
 .accordion {
-  color: #00cc00;
+  color: #fd5056;
   border: 2px solid transparent;
   border-radius: 0.5rem;
   overflow: hidden;
@@ -15308,7 +15308,7 @@ label {
 .tab__close {
   display: flex;
   color: white;
-  background: #00cc00;
+  background: #fd5056;
   cursor: pointer;
 }
 

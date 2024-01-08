@@ -17,7 +17,7 @@ class Packages extends Component
                 $place->with(['city' => function ($city) {
                     $city->select('id', 'name');
                 }])->select('id', 'city_id', 'title', 'thumbnail');
-            }])->select('id', 'place_id', 'title', 'description', 'start_date', 'end_date')->paginate(6)
+            }])->select('id', 'place_id', 'title', 'description', 'price', 'start_date', 'end_date')->paginate(6)
         ]);
     }
 }

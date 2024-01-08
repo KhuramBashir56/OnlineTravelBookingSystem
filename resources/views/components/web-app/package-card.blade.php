@@ -20,7 +20,7 @@
             <ul class="list">
                 <li><i class="bx bx-time"></i>{{ \Carbon\Carbon::parse($data->start_date)->diffInDays(\Carbon\Carbon::parse($data->end_date)) }} Days</li>
                 <li><i class="bx bx-group"></i>160+</li>
-                <li>PKR ={{ $data->price }}/-</li>
+                <li>PKR ={{ explode('.', $data->price)[0] }}/-</li>
             </ul>
         </div>
         <div class="spacer"></div>
