@@ -11,17 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('packages', function (Blueprint $table) {
+        Schema::create('place_comments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('agency_id')->constrained('agencies')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('place_id')->constrained('tour_places')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('title')->unique();
-            $table->decimal('price', 7, 2);
-            $table->timestamp('start_date');
-            $table->timestamp('end_date')->nullable();
-            $table->string('slug')->unique();
-            $table->text('description', 5000);
+            $table->string('name');
+            $table->string('email');
+            $table->string('comment');
             $table->enum('status', ['published', 'unpublished', 'deleted'])->default('published');
             $table->timestamps();
         });
@@ -32,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('packages');
+        Schema::dropIfExists('place_comments');
     }
 };

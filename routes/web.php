@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'pages.web-app.welcome')->name('welcome');
 Route::view('contact-us', 'pages.web-app.contact-us')->name('contact_us');
+Route::view('places/{slug}', 'pages.web-app.place-details')->name('place_details');
 
 /*
 |--------------------------------------------------------------------------

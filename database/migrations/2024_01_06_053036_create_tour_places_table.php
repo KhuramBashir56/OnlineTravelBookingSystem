@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('short_description', 160);
             $table->text('description', 5000);
-            $table->enum('status', ['published', 'unpublished', 'deleted'])->default('unpublished');
+            $table->enum('status', ['published', 'unpublished', 'deleted'])->default('published');
             $table->timestamps();
         });
     }

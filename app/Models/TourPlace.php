@@ -20,4 +20,14 @@ class TourPlace extends Model
     {
         return $this->belongsTo(Agency::class, 'agency_id', 'id');
     }
+
+    public function agency()
+    {
+        return $this->belongsTo(Agency::class, 'agency_id', 'id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(PlaceComment::class, 'place_id', 'id');
+    }
 }

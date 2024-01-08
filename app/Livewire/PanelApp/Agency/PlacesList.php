@@ -37,12 +37,12 @@ class PlacesList extends Component
             'title' => ['required', 'string', 'max:255', 'unique:tour_places,title'],
             'thumbnail' => [
                 'mimes:jpeg,png,jpg,webp', 'image', 'max:1024', 'required',
-                // 'dimensions:min_width=440,min_height=248,max_width=1280,max_height=720'
+                'dimensions:min_width=1919,min_height=1279,max_width=1921,max_height=1281'
             ],
             'short_description' => ['required'],
             'description' => ['required']
         ], [
-            'thumbnail.dimensions' => 'The thumbnail must have dimensions between 440x248 and 1280x720.',
+            'thumbnail.dimensions' => 'The thumbnail must have dimensions between 1920x1280.',
         ]);
 
         $agency_id = User::with(['agency' => function ($agency) {
