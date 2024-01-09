@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initialD-scale=1.0" />
     <meta name="keywords" content="event, unica, creative, html" />
     <meta name="description" content="Unica University Template" />
-    <link href="{{ asset('favicon.ico') }}" rel="shortcut icon" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/web-app/img/favicon.png') }}" />
     <title>{{ $title . ' | ' . config('app.name') }}</title>
     <link href="{{ asset('assets/panel/dist/css/style.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/panel/src/scss/select2/select2.min.css') }}" rel="stylesheet" />
@@ -23,7 +23,7 @@
                 <div class="navbar-header" data-logobg="skin5">
                     <a class="navbar-brand" href="{{ route('admin.dashboard') }}">
                         <b class="logo-icon ps-2">
-                            <img src="{{ asset('logo.webp') }}" alt="{{ config('app.name') }}" class="light-logo" width="25" />
+                            <img src="{{ asset('assets/web-app/img/favicon.png') }}" alt="{{ config('app.name') }}" class="light-logo" width="25" />
                         </b>
                         <h3 class="logo-text ms-3 my-auto">
                             {{ config('app.name') }}

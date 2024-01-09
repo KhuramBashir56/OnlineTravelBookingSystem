@@ -17,4 +17,9 @@ class Package extends Model
     {
         return $this->belongsTo(TourPlace::class, 'place_id', 'id');
     }
+
+    public function agency()
+    {
+        return $this->belongsTo(Agency::class, 'agency_id', 'id');
+    }
 }

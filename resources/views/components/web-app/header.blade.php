@@ -78,7 +78,13 @@
                                 <a href="{{ route('welcome') }}" class="nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('contact_us') }}" class="nav-link">Contact</a>
+                                <a href="{{ route('destinations') }}" class="nav-link {{ request()->is('destinations') ? 'active' : '' }}">Destinations</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('packages') }}" class="nav-link {{ request()->is('packages') ? 'active' : '' }}">Tour Packages</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('contact_us') }}" class="nav-link {{ request()->is('contact-us') ? 'active' : '' }}">Contact</a>
                             </li>
                         </ul>
                         @auth

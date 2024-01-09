@@ -6,7 +6,7 @@
                     <div class="footer-widget">
                         <div class="navbar-brand">
                             <a href="index.html">
-                                <img src="assets/img/logo2.png" alt="Logo" />
+                                <img src="{{ asset('assets/web-app/img/logo2.png') }}" alt="Logo" />
                             </a>
                         </div>
                         <p>You can dream, create, design, and build the most wonderful place.</p>
@@ -15,7 +15,7 @@
                                 <a href="tel:+0123456987"><i class="bx bx-phone"></i>+0123 456 987</a>
                             </div>
                             <div class="content">
-                                <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#325a575e5e5d725853475c461c515d5f"><i class="bx bx-envelope"></i><span class="__cf_email__" data-cfemail="aec6cbc2c2c1eec4cfdbc0da80cdc1c3">[email&#160;protected]</span></a>
+                                <a href="#"><i class="bx bx-envelope"></i><span class="__cf_email__" data-cfemail="aec6cbc2c2c1eec4cfdbc0da80cdc1c3">[email&#160;protected]</span></a>
                             </div>
                             <div class="content">
                                 <a href="#"><i class="bx bx-map"></i>Mon-Fri: 8 AM – 7 PM</a>
@@ -43,6 +43,15 @@
                     <div class="footer-widget">
                         <h5>Quick Links</h5>
                         <ul class="footer-links">
+                            <li>
+                                <a href="{{ route('welcome') }}">Home</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('destinations') }}">Destination</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('packages') }}">Tour Packages</a>
+                            </li>
                             <li>
                                 <a href="{{ route('contact_us') }}">Contact Us</a>
                             </li>

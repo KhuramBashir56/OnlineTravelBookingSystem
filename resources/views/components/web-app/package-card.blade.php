@@ -8,7 +8,7 @@
         <div class="content">
             <span class="location"><i class="bx bx-map"></i>{{ Str::ucfirst($data->place->title . ', ' . $data->place->city->name) }}</span>
             <h3>
-                <a href="destination-details.html">{{ Str::limit($data->title, 30, '...') }}</a>
+                <a href="{{ route('package_details', ['slug' => $data->slug]) }}">{{ Str::limit($data->title, 30, '...') }}</a>
             </h3>
             <div class="review">
                 <i class="bx bx-smile"></i>

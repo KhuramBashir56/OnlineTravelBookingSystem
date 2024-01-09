@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/web-app/img/favicon.png')}}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/web-app/img/favicon.png') }}" />
     <title>{{ request()->is('/') ? config('app.name') : $title . ' | ' . config('app.name') }}</title>
     <link rel="stylesheet" href="{{ asset('assets/web-app/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/web-app/css/fontawesome.min.css') }}" />
@@ -23,10 +23,7 @@
 </head>
 
 <body>
-
-    @include('components.web-app.header')
     {{ $slot }}
-    @include('components.web-app.footer')
     <script src="{{ asset('assets/web-app/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/web-app/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/web-app/js/bootstrap-datepicker.min.js') }}"></script>

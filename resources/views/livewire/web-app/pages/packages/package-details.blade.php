@@ -2,11 +2,11 @@
     <div class="page-title-area ptb-100">
         <div class="container">
             <div class="page-title-content">
-                <h1>{{ $placeData->title }}</h1>
+                <h1>{{ $packageData->title }}</h1>
             </div>
         </div>
         <div class="bg-image">
-            <img src="{{ asset('storage/' . $placeData->thumbnail) }}" alt="{{ $placeData->title }} image" />
+            <img src="{{ asset('storage/' . $packageData->place->thumbnail) }}" alt="{{ $packageData->title }} image" />
         </div>
     </div>
 
@@ -18,14 +18,14 @@
                         <div class="row align-items-center">
                             <div class="col-sm-12">
                                 <div class="image mb-30">
-                                    <img src="{{ asset('storage/' . $placeData->thumbnail) }}" alt="{{ $placeData->title }} image" />
+                                    <img src="{{ asset('storage/' . $packageData->place->thumbnail) }}" alt="{{ $packageData->title }} image" />
                                 </div>
                             </div>
                         </div>
                         <div class="content mb-20">
-                            <h3>{{ $placeData->title }}</h3>
-                            <p>{{ $placeData->short_description }}</p>
-                            <p>{{ $placeData->description }}</p>
+                            <h3>{{ $packageData->title }}</h3>
+                            <p>{{ $packageData->short_description }}</p>
+                            <p>{{ $packageData->description }}</p>
                         </div>
                         <div class="info-content">
                             <h3 class="sub-title">Some Information</h3>
@@ -33,7 +33,7 @@
                                 <div class="col-lg-6 col-md-6">
                                     <div class="content-list">
                                         <i class="bx bx-map-alt"></i>
-                                        <h6><span>City :</span> {{ $placeData->city->name }}</h6>
+                                        <h6><span>City :</span> {{ $packageData->place->city->name }}</h6>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
@@ -45,7 +45,7 @@
                                 <div class="col-lg-6 col-md-6">
                                     <div class="content-list">
                                         <i class="bx bx-notepad"></i>
-                                        <h6><span>Agency :</span> {{ $placeData->agency->title }} </h6>
+                                        <h6><span>Agency :</span> {{ $packageData->agency->title }} </h6>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
@@ -57,7 +57,7 @@
                                 <div class="col-lg-6 col-md-6">
                                     <div class="content-list">
                                         <i class="bx bx-user"></i>
-                                        <h6><span>Per Person :</span> $1200</h6>
+                                        <h6><span>Per Person :</span>PKR ={{ $packageData->price }}/-</h6>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
@@ -69,7 +69,7 @@
                             </div>
                         </div>
                         <hr />
-                        <livewire:web-app.pages.places.comments :place="$placeData->id" :author="$placeData->user_id" />
+                        {{-- <livewire:web-app.pages.places.comments :place="$packageData->id" :author="$packageData->user_id" /> --}}
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12">
@@ -82,7 +82,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="widget widget-article mb-30">
+                        {{-- <div class="widget widget-article mb-30">
                             <h3 class="sub-title">Popular Places</h3>
                             @forelse ($places as $data)
                                 <article class="article-item">
@@ -102,7 +102,7 @@
                             @empty
                                 <h3>Data Not Found...</h3>
                             @endforelse
-                        </div>
+                        </div> --}}
                         <div class="widget widget-gallery mb-30">
                             <h3 class="sub-title">Instagram Post</h3>
                             <ul class="instagram-post">
