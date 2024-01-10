@@ -33,12 +33,5 @@ class AppServiceProvider extends ServiceProvider
                 'guides' => User::where('account_type', 'guide')->where('status', 'active')->count()
             ]);
         });
-        View::composer('pages.web-app.welcome', function ($view) {
-            $view->with([
-                'places' => TourPlace::with(['city' => function ($query) {
-                    $query->select('id', 'name');
-                }])->select('id', 'city_id', 'title', 'thumbnail', 'slug', 'short_description')->where('status', 'published')->inRandomOrder()->take(3)->get()
-            ]);
-        });
     }
 }

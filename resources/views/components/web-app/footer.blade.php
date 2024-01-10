@@ -5,7 +5,7 @@
                 <div class="col-lg-3 col-md-5 col-sm-6 col-12">
                     <div class="footer-widget">
                         <div class="navbar-brand">
-                            <a href="index.html">
+                            <a href="{{ route('welcome') }}">
                                 <img src="{{ asset('assets/web-app/img/logo2.png') }}" alt="Logo" />
                             </a>
                         </div>

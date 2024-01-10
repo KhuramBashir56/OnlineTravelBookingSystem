@@ -18,7 +18,7 @@
                         <div class="row align-items-center">
                             <div class="col-sm-12">
                                 <div class="image mb-30">
-                                    <img src="{{ asset('storage/' . $packageData->place->thumbnail) }}" alt="{{ $packageData->title }} image" />
+                                    <img src="{{ asset('storage/' . $packageData->place->thumbnail) }}" style="aspect-ratio:1.77;" alt="{{ $packageData->title }} image" />
                                 </div>
                             </div>
                         </div>
@@ -38,20 +38,8 @@
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="content-list">
-                                        <i class="bx bx-book-reader"></i>
-                                        <h6><span>Language Spoken :</span> English</h6>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="content-list">
                                         <i class="bx bx-notepad"></i>
                                         <h6><span>Agency :</span> {{ $packageData->agency->title }} </h6>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="content-list">
-                                        <i class="bx bx-area"></i>
-                                        <h6><span>Area (km2) :</span> 1770.80 km2</h6>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
@@ -60,16 +48,32 @@
                                         <h6><span>Per Person :</span>PKR ={{ $packageData->price }}/-</h6>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="content-list">
-                                        <i class="bx bx-group"></i>
-                                        <h6><span>Guide :</span> Local Guide Available</h6>
-                                    </div>
-                                </div>
                             </div>
                         </div>
+                        @if ($packageData->guide->count() > 0)
+                            <hr />
+                            <div class="comments-area mb-30">
+                                <h3 class="sub-title">Tour Guides</h3>
+                                <ol class="comment-list">
+                                    @foreach ($packageData->guide as $data)
+                                        <li class="comment">
+                                            <div class="comment-body">
+                                                <div class="comment-author">
+                                                    <img src="{{ asset('storage/'.$data->profile_image) }}" alt="image">
+                                                </div>
+                                                <div class="comment-content">
+                                                    <div class="comment-metadata">
+                                                        <h4 class="name">{{$data->name}}</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                </ol>
+                            </div>
+                        @endif
                         <hr />
-                        {{-- <livewire:web-app.pages.places.comments :place="$packageData->id" :author="$packageData->user_id" /> --}}
+                        <livewire:web-app.pages.packages.comments :place="$packageData->id" :author="$packageData->user_id" />
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12">

@@ -3,6 +3,7 @@
 namespace App\Livewire\PanelApp\Agency;
 
 use App\Models\Package;
+use App\Models\PackagesGuides;
 use App\Models\TourPlace;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -15,9 +16,13 @@ class PackagesList extends Component
 
     public $addNewAgencyModel = false;
 
+    public $packageInfo = false;
+
+    public $addNewGuide = false;
+
     public $places = [];
 
-    public $search, $place_id, $title, $price, $description, $start_date, $end_date;
+    public $search, $package, $guide_id, $guides, $place_id, $title, $price, $description, $start_date, $end_date;
 
     public function newModalOpen()
     {
@@ -60,6 +65,57 @@ class PackagesList extends Component
         ]);
         $this->newPlaceModalClose();
         session()->flash('success', 'New tour package data was saved successfully.');
+    }
+
+    public function information($package_id)
+    {
+        $this->packageInfo = true;
+        $this->package = Package::find($package_id);
+    }
+
+    public function closeInformation()
+    {
+
+        $this->packageInfo = false;
+    }
+
+    public function addGuide($package_id)
+    {
+        $this->packageInfo = false;
+        $this->addNewGuide = true;
+        $this->guides = User::where('status', 'active')->where('register_by', Auth::user()->id)->select('id', 'name', 'register_by')->get();
+        $this->package = $package_id;
+    }
+
+    public function closeAssign()
+    {
+        $this->reset('guide_id');
+        $this->package = '';
+        $this->addNewGuide = false;
+    }
+
+    public function assignGuide()
+    {
+        $agency_id = User::with(['agency' => function ($agency) {
+            $agency->select('id', 'owner_id');
+        }])->select('id')->find(Auth::user()->id);
+
+        $exitGuide = PackagesGuides::where('package_id', $this->package)->where('guide_id', $this->guide_id)->where('guide_role', $this->guide_role)->first();
+        $this->validate([
+            'guide_id' => ['required', 'integer', 'min:1']
+        ]);
+        
+        if (empty($exitGuide)) {
+            PackagesGuides::create([
+                'package_id' => $this->package,
+                'agency_id' => $agency_id->id,
+                'guide_id' => $this->guide_id,
+            ]);
+            session()->flash('success', 'New tour package data was saved successfully.');
+        } else {
+            session()->flash('error', 'Tour guide already assigned.');
+        }
+        $this->closeAssign();
     }
 
     public function render()

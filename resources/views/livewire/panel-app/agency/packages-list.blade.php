@@ -2,6 +2,9 @@
     @if (session('success'))
         <x-panel-app.alerts.success :message="session('success')" />
     @endif
+    @if (session('error'))
+        <x-panel-app.alerts.error :message="session('error')" />
+    @endif
     <div class="col-12">
         <div class="card m-0">
             <div class="card-body d-flex align-items-center justify-content-between">
@@ -22,6 +25,7 @@
                                 <th scope="col">Title</th>
                                 <th scope="col">City</th>
                                 <th scope="col">Status</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,6 +46,11 @@
                                         @else
                                             <span class="badge bg-danger">Un Published</span>
                                         @endif
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-info btn-sm" type="button" wire:click="information({{ $data->id }})" wire:loading.attr="disabled" wire:offline.attr="disabled" title="Information">
+                                            <i class="mdi mdi-information" style="font-size: 16px;"></i>
+                                        </button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -80,9 +89,80 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" wire:click="newPlaceModalClose" wire:confirm="Are you sure you want to destroy the form data?" wire:loading.attr="disabled" wire:offline.attr="disabled" class="btn btn-danger">Cancel</button>
-                    <button type="submit" class="btn btn-primary" wire:loading.attr="disabled" wire:offline.attr="disabled">Save</button>
+                    <button type="submit" class="btn btn-success" wire:loading.attr="disabled" wire:offline.attr="disabled">Save</button>
                 </div>
             </form>
+        </x-panel-app.modal-box>
+    @endif
+    @if ($packageInfo)
+        <x-panel-app.modal-box>
+            <div class="modal-header">
+                <h5 class="modal-title">Package Details</h5>
+                <button type="button" wire:click="closeInformation" wire:loading.attr="disabled" wire:offline.attr="disabled" class="btn-close" title="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    @if ($package->place->thumbnail)
+                        <img class="mb-2" src="{{ asset('storage/' . $package->place->thumbnail) }}" width="100%" alt="{{ $package->title }}">
+                    @else
+                        <img class="mb-2" src="{{ asset('assets/panel/assets/images/logo-icon.png') }}" alt="{{ $package->title }}">
+                    @endif
+                </div>
+                <table class="table table-hover table-striped">
+                    <tbody>
+                        <tr>
+                            <td>Title / Name</td>
+                            <td>{{ $package->title }}</td>
+                        </tr>
+                        <tr>
+                            <td>Status</td>
+                            <td>
+                                @if ($package->start_date >= date('Y-m-d'))
+                                    <span class="badge bg-success">Active</span>
+                                @elseif ($package->end_date < date('Y-m-d'))
+                                    <span class="badge bg-danger">Espied</span>
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Start Date</td>
+                            <td>{{ $package->start_date->format('F d, Y') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Emd Date</td>
+                            <td>{{ $package->end_date->format('F d, Y') }}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">{{ $package->description }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" wire:click="closeInformation" wire:loading.attr="disabled" wire:offline.attr="disabled" class="btn btn-danger">Cancel</button>
+                <button type="button" wire:click="addGuide({{ $package->id }})" wire:loading.attr="disabled" wire:offline.attr="disabled" class="btn btn-info">Add Tour Guide</button>
+                <button type="submit" class="btn btn-success" wire:loading.attr="disabled" wire:offline.attr="disabled">Save</button>
+            </div>
+        </x-panel-app.modal-box>
+    @endif
+    @if ($addNewGuide)
+        <x-panel-app.modal-box>
+            <div class="modal-header">
+                <h5 class="modal-title">Package Details</h5>
+                <button type="button" wire:click="closeAssign" wire:confirm="Are you sure you want to destroy the form data?" wire:loading.attr="disabled" wire:offline.attr="disabled" class="btn-close" title="Close"></button>
+            </div>
+            <div class="modal-body">
+                <x-panel-app.input-select wire:model="guide_id" :for="__('guide_id')" :title="__('Tour Destination / Place')" :error="$errors->first('guide_id')" required>
+                    @foreach ($guides as $data)
+                        <option value="{{ $data->id }}">{{ $data->name }}</option>
+                    @endforeach
+                </x-panel-app.input-select>
+                <x-panel-app.input type="text" wire:model="guide_role" :for="__('guide_role')" :title="__('Guide Role')" required :error="$errors->first('guide_role')" required placeholder="Guide role as" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" wire:click="closeAssign" wire:confirm="Are you sure you want to destroy the form data?" wire:loading.attr="disabled" wire:offline.attr="disabled" class="btn btn-danger">Cancel</button>
+                <button type="button" class="btn btn-success" wire:click="assignGuide" wire:loading.attr="disabled" wire:offline.attr="disabled">Save</button>
+            </div>
         </x-panel-app.modal-box>
     @endif
 </div>

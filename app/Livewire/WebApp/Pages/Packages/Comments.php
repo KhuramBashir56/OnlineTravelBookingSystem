@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Livewire\WebApp\Pages\Places;
+namespace App\Livewire\WebApp\Pages\Packages;
 
-use App\Models\PlaceComment;
+use App\Models\PackageComment;
 use Livewire\Component;
 
 class Comments extends Component
 {
+
     public $place, $author, $name, $email, $comment;
 
     public function saveComment()
@@ -16,11 +17,11 @@ class Comments extends Component
             'email' => ['email', 'required', 'max:56'],
             'comment' => ['required', 'string', 'max:255']
         ]);
-        PlaceComment::create([
+        PackageComment::create([
             'name' => $this->name,
             'email' => $this->email,
             'comment' => $this->comment,
-            'place_id' => $this->place,
+            'package_id' => $this->place,
         ]);
         $this->reset('name', 'email', 'comment');
         session()->flash('success', 'Thank you for your comment. We will read and publish the comment.');
@@ -28,8 +29,8 @@ class Comments extends Component
 
     public function render()
     {
-        return view('livewire.web-app.pages.places.comments', [
-            'comments' => PlaceComment::where('status', 'published')->where('place_id', $this->place)->get()
+        return view('livewire.web-app.pages.packages.comments', [
+            'comments' => PackageComment::where('status', 'published')->where('package_id', $this->place)->get()
         ]);
     }
 }

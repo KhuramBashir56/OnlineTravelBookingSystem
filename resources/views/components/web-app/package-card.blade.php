@@ -3,7 +3,7 @@
 <div class="col-lg-4 col-md-6 filtr-item" data-category="3, 1" data-sort="value">
     <div class="item-single mb-30">
         <div class="image">
-            <img src="{{ asset('storage/' . $data->place->thumbnail) }}" alt="Demo Image" />
+            <img src="{{ asset('storage/' . $data->place->thumbnail) }}" style="aspect-ratio:1.77;" alt="Demo Image" />
         </div>
         <div class="content">
             <span class="location"><i class="bx bx-map"></i>{{ Str::ucfirst($data->place->title . ', ' . $data->place->city->name) }}</span>

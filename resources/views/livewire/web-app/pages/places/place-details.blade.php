@@ -18,7 +18,7 @@
                         <div class="row align-items-center">
                             <div class="col-sm-12">
                                 <div class="image mb-30">
-                                    <img src="{{ asset('storage/' . $placeData->thumbnail) }}" alt="{{ $placeData->title }} image" />
+                                    <img src="{{ asset('storage/' . $placeData->thumbnail) }}" style="aspect-ratio:1.77;" alt="{{ $placeData->title }}  image" />
                                 </div>
                             </div>
                         </div>
@@ -38,26 +38,8 @@
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="content-list">
-                                        <i class="bx bx-book-reader"></i>
-                                        <h6><span>Language Spoken :</span> English</h6>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="content-list">
                                         <i class="bx bx-notepad"></i>
                                         <h6><span>Agency :</span> {{ $placeData->agency->title }} </h6>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="content-list">
-                                        <i class="bx bx-area"></i>
-                                        <h6><span>Area (km2) :</span> 1770.80 km2</h6>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="content-list">
-                                        <i class="bx bx-user"></i>
-                                        <h6><span>Per Person :</span> $1200</h6>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
@@ -87,12 +69,12 @@
                             @forelse ($places as $data)
                                 <article class="article-item">
                                     <div class="image">
-                                        <img src="{{ asset('storage/' . $data->thumbnail) }}" alt="Demo Image" />
+                                        <img src="{{ asset('storage/' . $data->thumbnail) }}" style="aspect-ratio:1.77;" alt="Demo Image" />
                                     </div>
                                     <div class="content">
                                         <span class="location"><i class="bx bx-map"></i>{{ $data->city->name }}</span>
                                         <h3>
-                                            <a href="destination-details.html">{{ Str::limit($data->title, 20, '...') }}</a>
+                                            <a href="{{ route('place_details', ['slug' => $data->slug]) }}">{{ Str::limit($data->title, 20, '...') }}</a>
                                         </h3>
                                         <ul class="list">
                                             <li><i class="bx bx-time"></i>{{ $data->created_at->diffForHumans() }}</li>
