@@ -135,6 +135,19 @@
                         <tr>
                             <td colspan="2">{{ $package->description }}</td>
                         </tr>
+                        <tr>
+                            <td colspan="2">
+                                <h4>Guides</h4>
+                            </td>
+                        </tr>
+                        @foreach ($package->guide as $data)
+                            <tr>
+                                <td colspan="2">
+                                    <img src="{{ asset('storage/' . $data->profile_image) }}" alt="{{ $data->name }}" title="{{ $data->name }}" class="rounded-circle" width="35" height="35" />
+                                    <span></span>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

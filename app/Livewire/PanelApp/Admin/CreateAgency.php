@@ -29,7 +29,7 @@ class CreateAgency extends Component
             'name' => ['required', 'string', 'max:255'],
             'mobile' => ['required', 'max:15', 'min:11', 'string'],
             'profile_image' => [
-                'mimes:jpeg,png,jpg,webp', 'image', 'max:300', 'required',
+                'mimes:jpeg,png,jpg,webp', 'image', 'max:3000', 'required',
                 // 'dimensions:min_width=200,min_height=200,max_width=800,max_height=800'
             ],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],

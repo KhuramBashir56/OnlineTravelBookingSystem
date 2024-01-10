@@ -37,7 +37,6 @@ class PlacesList extends Component
             'title' => ['required', 'string', 'max:255', 'unique:tour_places,title'],
             'thumbnail' => [
                 'mimes:jpeg,png,jpg,webp', 'image', 'max:1024', 'required',
-                'dimensions:min_width=1919,min_height=1279,max_width=1921,max_height=1281'
             ],
             'short_description' => ['required'],
             'description' => ['required']

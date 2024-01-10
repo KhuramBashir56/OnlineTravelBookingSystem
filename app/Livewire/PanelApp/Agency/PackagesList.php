@@ -100,7 +100,7 @@ class PackagesList extends Component
             $agency->select('id', 'owner_id');
         }])->select('id')->find(Auth::user()->id);
 
-        $exitGuide = PackagesGuides::where('package_id', $this->package)->where('guide_id', $this->guide_id)->where('guide_role', $this->guide_role)->first();
+        $exitGuide = PackagesGuides::where('package_id', $this->package)->where('guide_id', $this->guide_id)->first();
         $this->validate([
             'guide_id' => ['required', 'integer', 'min:1']
         ]);
