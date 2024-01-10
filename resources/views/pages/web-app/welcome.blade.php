@@ -6,7 +6,7 @@
                     <div class="row">
                         <div class="col-lg-5 align-self-end">
                             <div class="banner-image">
-                                <img src="{{ asset('assets/web-app/img/banner/banner1.png" ') }}alt="Demo Image">
+                                <img src="{{ asset('assets/web-app/img/banner/banner1.png') }}" alt="Demo Image">
                             </div>
                         </div>
                         <div class="col-lg-7">
@@ -30,7 +30,7 @@
                     <div class="row">
                         <div class="col-lg-5 align-self-end">
                             <div class="banner-image">
-                                <img src="{{ asset('assets/web-app/img/banner/banner2.png" ') }}alt="Demo Image">
+                                <img src="{{ asset('assets/web-app/img/banner/banner2.png') }}" alt="Demo Image">
                             </div>
                         </div>
                         <div class="col-lg-7">
@@ -167,6 +167,7 @@
             </div>
         </div>
     </div>
+
     <section id="top-destination" class="top-destination-section pt-100 pb-70 bg-light">
         <div class="container">
             <div class="section-title">
