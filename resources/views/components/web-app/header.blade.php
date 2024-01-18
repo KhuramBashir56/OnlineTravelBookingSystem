@@ -86,15 +86,43 @@
                             <li class="nav-item">
                                 <a href="{{ route('contact_us') }}" class="nav-link {{ request()->is('contact-us') ? 'active' : '' }}">Contact</a>
                             </li>
+                            @auth
+                                @can('user')
+                                    <li class="nav-item d-block d-xl-none">
+                                        <a href="{{ route('history') }}" class="nav-link {{ request()->is('panel/user/tour-history') ? 'active' : '' }}">My Tour History</a>
+                                    </li>
+                                    <li class="nav-item d-block d-xl-none">
+                                        <a href="{{ route('password.change') }}" class="nav-link {{ request()->is('password') ? 'active' : '' }}">Change Password</a>
+                                    </li>
+                                @endcan
+                                <li class="nav-item d-block d-xl-none">
+                                    <a href="javascript:void(0)" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">Logout</button>
+                                </li>
+                            @endauth
+                            @auth
+                                <li class="nav-item dropdown">
+                                    <a href="javascript:void(0)" class="cart-btn" role="button"><i class="bx bx-user"></i></a>
+                                    <ul class="dropdown-menu">
+                                        @can('user')
+                                            <li><a class="px-4 dropdown-item" href="{{ route('history') }}">My Tour History</a></li>
+                                            <li><a class="px-4 dropdown-item" href="{{ route('password.change') }}">Change Password</a></li>
+                                        @endcan
+                                        <hr class="dropdown-divider">
+                                        <li><a class="px-4 dropdown-item" href="javascript:void(0)" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
+                                    </ul>
+                                </li>
+                            @endauth
                         </ul>
-                        @auth
-                            <div class="cart" title="{{ Auth::user()->name }}">
-                                <a href="{{ route('login') }}" class="cart-btn"><i class="bx bx-user"></i></a>
-                            </div>
-                        @endauth
                     </div>
                 </nav>
             </div>
         </div>
     </div>
 </header>
+<form id="logout-form" class="d-none" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+</form>
+<form id="logout-formo" class="d-none" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+</form>
+

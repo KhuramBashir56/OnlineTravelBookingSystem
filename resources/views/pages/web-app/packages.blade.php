@@ -28,4 +28,7 @@
     </section>
     <x-web-app.about-us-card />
 
+    <x-web-app.agencies />
+
+
 </x-layouts.web-app-layout>

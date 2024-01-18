@@ -3,6 +3,7 @@
 namespace App\Livewire\PanelApp\Admin;
 
 use App\Models\Agency;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -11,9 +12,11 @@ class AgenciesList extends Component
 {
     use WithPagination;
 
-    public $search, $agency;
+    public $search, $agency, $agency_id, $reason;
 
     public $informationModal = false;
+
+    public $blockReasonForm = false;
 
     public $users = [];
 
@@ -34,6 +37,35 @@ class AgenciesList extends Component
     {
         $this->informationModal = false;
         $this->agency = '';
+    }
+
+    public function block($agency_id)
+    {
+        $this->informationModal = false;
+        $this->blockReasonForm = true;
+        $this->agency_id = $agency_id;
+    }
+
+    public function blockModalClose()
+    {
+        $this->informationModal = false;
+        $this->blockReasonForm = false;
+        $this->agency_id = '';
+    }
+
+    public function blockAccount($agency_id)
+    {
+        $agency = Agency::find($agency_id);
+        $agency->status = 'blocked';
+        $agency->save();
+        $account = $agency->agencyOwner;
+        $account->status = 'blocked';
+        $account->block_reason = $this->reason;
+        $account->blocked_by = Auth::user()->id;
+        $account->blocked_at = now();
+        $account->save();
+        $this->blockModalClose();
+        session()->flash('success', 'Account blocked successfully.');
     }
 
     public function render()

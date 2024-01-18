@@ -18,11 +18,12 @@ return new class extends Migration
             $table->foreignId('place_id')->constrained('tour_places')->onDelete('cascade')->onUpdate('cascade');
             $table->string('title')->unique();
             $table->decimal('price', 7, 2);
-            $table->timestamp('start_date');
-            $table->timestamp('end_date')->nullable();
+            $table->timestamp('start');
+            $table->timestamp('end')->nullable();
+            $table->string('duration', 10);
             $table->string('slug')->unique();
             $table->text('description', 5000);
-            $table->enum('status', ['published', 'unpublished', 'deleted'])->default('published');
+            $table->enum('status', ['published', 'unpublished', 'deleted'])->default('unpublished');
             $table->timestamps();
         });
     }

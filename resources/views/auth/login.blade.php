@@ -26,10 +26,16 @@
                     <div class="form-group">
                         <div class="input-icon"><i class="bx bx-user"></i></div>
                         <input class="form-control" id="email" type="email" name="email" :value="old('email')" required autofocus autocomplete="email" placeholder="Enter Your Email Address" maxlength="65" />
+                        @error('email')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <div class="input-icon"><i class="bx bx-key"></i></div>
                         <input class="form-control" id="password" type="password" name="password" required autocomplete="current-password" placeholder="Password" minlength="8" maxlength="32" />
+                        @error('email')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                     <div class="row align-items-center mb-30">
                         <div class="col-lg-6 col-sm-6 col-6">

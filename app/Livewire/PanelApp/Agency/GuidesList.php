@@ -28,7 +28,7 @@ class GuidesList extends Component
     public function newModalClose()
     {
         $this->addNewAgencyModel = false;
-        $this->reset(['name', 'mobile', 'profile_image', 'email', 'password', 'password_confirmation']);
+        $this->reset(['name', 'mobile', 'profile_image', 'email']);
     }
 
 
@@ -43,7 +43,6 @@ class GuidesList extends Component
                 // 'dimensions:min_width=200,min_height=200,max_width=800,max_height=800'
             ],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ], [
             'profile_image.dimensions' => 'The logo must have dimensions between 200x200 and 800x800.',
         ]);
@@ -54,7 +53,7 @@ class GuidesList extends Component
         $user->mobile = $this->mobile;
         $user->profile_image = $this->profile_image->store('uploads/users/profile_images', 'public');
         $user->email = $this->email;
-        $user->password = Hash::make($this->password);
+        $user->password = Hash::make('1234567890');
         $user->register_by = Auth::user()->id;
         $user->account_type = 'guide';
         $user->save();

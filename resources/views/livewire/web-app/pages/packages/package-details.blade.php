@@ -22,9 +22,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="content mb-20">
+                        <div class="mb-20 content">
                             <h3>{{ $packageData->title }}</h3>
-                            <p>{{ $packageData->short_description }}</p>
                             <p>{{ $packageData->description }}</p>
                         </div>
                         <div class="info-content">
@@ -38,8 +37,8 @@
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="content-list">
-                                        <i class="bx bx-notepad"></i>
-                                        <h6><span>Agency :</span> {{ $packageData->agency->title }} </h6>
+                                        <i class="bx bx-map"></i>
+                                        <h6><span>Destination :</span> {{ $packageData->place->title }}</h6>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
@@ -48,8 +47,27 @@
                                         <h6><span>Per Person :</span>PKR ={{ $packageData->price }}/-</h6>
                                     </div>
                                 </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="content-list">
+                                        <i class="bx bx-group"></i>
+                                        <h6><span>Group Members : </span>{{ $packageData->bookings->where('status', 'verified')->sum('persons') }}+</h6>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="content-list">
+                                        <i class="bx bx-notepad"></i>
+                                        <h6><span>Start Date :</span> {{ $packageData->start->format('F d, Y') }}</h6>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="content-list">
+                                        <i class="bx bx-notepad"></i>
+                                        <h6><span>End Date :</span> {{ $packageData->end->format('F d, Y') }}</h6>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <livewire:web-app.pages.packages.user-login :package="$packageData->slug" />
                         @if ($packageData->guide->count() > 0)
                             <hr />
                             <div class="comments-area mb-30">
@@ -59,11 +77,11 @@
                                         <li class="comment">
                                             <div class="comment-body">
                                                 <div class="comment-author">
-                                                    <img src="{{ asset('storage/'.$data->profile_image) }}" alt="image">
+                                                    <img src="{{ asset('storage/' . $data->profile_image) }}" alt="image">
                                                 </div>
                                                 <div class="comment-content">
                                                     <div class="comment-metadata">
-                                                        <h4 class="name">{{$data->name}}</h4>
+                                                        <h4 class="name">{{ $data->name }}</h4>
                                                     </div>
                                                 </div>
                                             </div>

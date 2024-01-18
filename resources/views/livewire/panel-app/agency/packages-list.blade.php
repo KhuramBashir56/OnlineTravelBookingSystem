@@ -6,7 +6,7 @@
         <x-panel-app.alerts.error :message="session('error')" />
     @endif
     <div class="col-12">
-        <div class="card m-0">
+        <div class="m-0 card">
             <div class="card-body d-flex align-items-center justify-content-between">
                 <button type="button" wire:click="newModalOpen" wire:loading.attr="disabled" wire:offline.attr="disabled" class="btn btn-outline-info">Create New Package</button>
                 <div class="col-8 col-sm-4">
@@ -24,6 +24,7 @@
                                 <th scope="col">Thumbnail</th>
                                 <th scope="col">Title</th>
                                 <th scope="col">City</th>
+                                <th scope="col">Duration</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -40,6 +41,7 @@
                                     </td>
                                     <td>{{ $data->title }}</td>
                                     <td>{{ $data->place->city->name }}</td>
+                                    <td>{{ $data->duration }}{{ $data->duration <= 1 ? ' Day' : ' Days' }}</td>
                                     <td>
                                         @if ($data->status === 'published')
                                             <span class="badge bg-success">Published</span>
@@ -79,10 +81,10 @@
                     <x-panel-app.input type="number" wire:model="price" :for="__('price')" :title="__('Package Price PKR')" required :error="$errors->first('price')" required placeholder="Package Price PKR" min="0" max="9999999" />
                     <div class="row">
                         <div class="col-6">
-                            <x-panel-app.input type="date" wire:model="start_date" :for="__('start_date')" :title="__('Package Start Date')" required :error="$errors->first('start_date')" required min="{{ now()->format('Y-m-d') }}" />
+                            <x-panel-app.input type="date" wire:model="start" :for="__('start')" :title="__('Package Start Date')" required :error="$errors->first('start')" required min="{{ now()->format('Y-m-d') }}" />
                         </div>
                         <div class="col-6">
-                            <x-panel-app.input type="date" wire:model="end_date" :for="__('end_date')" :title="__('Package End Date')" required :error="$errors->first('end_date')" required min="{{ now()->format('Y-m-d') }}" />
+                            <x-panel-app.input type="date" wire:model="end" :for="__('end')" :title="__('Package End Date')" required :error="$errors->first('end')" required min="{{ now()->format('Y-m-d') }}" />
                         </div>
                     </div>
                     <x-panel-app.textarea wire:model="description" :for="__('description')" :title="__('Description')" :error="$errors->first('description')" rows='10' required maxlength="1500" placeholder="Write a description of up to 1500 characters." />
@@ -117,20 +119,20 @@
                         <tr>
                             <td>Status</td>
                             <td>
-                                @if ($package->start_date >= date('Y-m-d'))
+                                @if ($package->start >= Carbon\Carbon::now()->startOfDay())
                                     <span class="badge bg-success">Active</span>
-                                @elseif ($package->end_date < date('Y-m-d'))
+                                @elseif ($package->end < Carbon\Carbon::now()->endOfDay())
                                     <span class="badge bg-danger">Espied</span>
                                 @endif
                             </td>
                         </tr>
                         <tr>
                             <td>Start Date</td>
-                            <td>{{ $package->start_date->format('F d, Y') }}</td>
+                            <td>{{ $package->start->format('F d, Y') }}</td>
                         </tr>
                         <tr>
                             <td>Emd Date</td>
-                            <td>{{ $package->end_date->format('F d, Y') }}</td>
+                            <td>{{ $package->end->format('F d, Y') }}</td>
                         </tr>
                         <tr>
                             <td colspan="2">{{ $package->description }}</td>
@@ -144,7 +146,7 @@
                             <tr>
                                 <td colspan="2">
                                     <img src="{{ asset('storage/' . $data->profile_image) }}" alt="{{ $data->name }}" title="{{ $data->name }}" class="rounded-circle" width="35" height="35" />
-                                    <span></span>
+                                    <span>{{ $data->name }}</span>
                                 </td>
                             </tr>
                         @endforeach
@@ -152,16 +154,17 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" wire:click="closeInformation" wire:loading.attr="disabled" wire:offline.attr="disabled" class="btn btn-danger">Cancel</button>
-                <button type="button" wire:click="addGuide({{ $package->id }})" wire:loading.attr="disabled" wire:offline.attr="disabled" class="btn btn-info">Add Tour Guide</button>
-                <button type="submit" class="btn btn-success" wire:loading.attr="disabled" wire:offline.attr="disabled">Save</button>
+                @if ($package->end > Carbon\Carbon::now()->endOfDay())
+                    <button type="button" wire:click="addGuide({{ $package->id }})" wire:loading.attr="disabled" wire:offline.attr="disabled" class="btn btn-info">Add Tour Guide</button>
+                @endif
+                <button type="button" wire:click="closeInformation" wire:loading.attr="disabled" wire:offline.attr="disabled" class="btn btn-secondary">Close</button>
             </div>
         </x-panel-app.modal-box>
     @endif
     @if ($addNewGuide)
         <x-panel-app.modal-box>
             <div class="modal-header">
-                <h5 class="modal-title">Package Details</h5>
+                <h5 class="modal-title">Add Tour Guide</h5>
                 <button type="button" wire:click="closeAssign" wire:confirm="Are you sure you want to destroy the form data?" wire:loading.attr="disabled" wire:offline.attr="disabled" class="btn-close" title="Close"></button>
             </div>
             <div class="modal-body">
@@ -170,7 +173,6 @@
                         <option value="{{ $data->id }}">{{ $data->name }}</option>
                     @endforeach
                 </x-panel-app.input-select>
-                <x-panel-app.input type="text" wire:model="guide_role" :for="__('guide_role')" :title="__('Guide Role')" required :error="$errors->first('guide_role')" required placeholder="Guide role as" />
             </div>
             <div class="modal-footer">
                 <button type="button" wire:click="closeAssign" wire:confirm="Are you sure you want to destroy the form data?" wire:loading.attr="disabled" wire:offline.attr="disabled" class="btn btn-danger">Cancel</button>

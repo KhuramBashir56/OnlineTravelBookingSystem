@@ -17,7 +17,7 @@ class Packages extends Component
                 $query->with(['city' => function ($city) {
                     $city->select('id', 'name');
                 }])->select('id', 'city_id', 'title', 'thumbnail');
-            }])->select('id', 'place_id', 'title', 'description', 'slug', 'price', 'start_date', 'end_date')->paginate(6)
+            }])->select('id', 'place_id', 'title', 'description', 'slug', 'price', 'start', 'end','duration')->where('end', '>', now()->endOfDay())->paginate(6)
         ]);
     }
 }

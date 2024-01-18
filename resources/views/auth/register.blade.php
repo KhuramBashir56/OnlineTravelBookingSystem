@@ -7,12 +7,6 @@
         <div class="container">
             <div class="page-title-content">
                 <h1>Register</h1>
-                <ul>
-                    <li class="item"><a href="index.html">Home</a></li>
-                    <li class="item">
-                        <a href="register.html"><i class="bx bx-chevrons-right"></i>Register</a>
-                    </li>
-                </ul>
             </div>
         </div>
         <div class="bg-image">

@@ -11,15 +11,14 @@
                 <a href="{{ route('package_details', ['slug' => $data->slug]) }}">{{ Str::limit($data->title, 30, '...') }}</a>
             </h3>
             <div class="review">
-                <i class="bx bx-smile"></i>
-                <span>8.5</span>
-                <span>Superb</span>
+                <span><b>Start Date</b></span>
+                <span>{{ $data->start->format('F d, Y') }}</span>
             </div>
             <p>{{ Str::limit($data->description, 60, '...') }}</p>
             <hr />
             <ul class="list">
-                <li><i class="bx bx-time"></i>{{ \Carbon\Carbon::parse($data->start_date)->diffInDays(\Carbon\Carbon::parse($data->end_date)) }} Days</li>
-                <li><i class="bx bx-group"></i>160+</li>
+                <li><i class="bx bx-time"></i>{{ $data->duration }} {{ $data->duration <= 1 ? ' Day' : ' Days' }}</li>
+                <li><i class="bx bx-group"></i>{{ $data->bookings->where('status', 'verified')->sum('persons') }}+</li>
                 <li>PKR ={{ explode('.', $data->price)[0] }}/-</li>
             </ul>
         </div>

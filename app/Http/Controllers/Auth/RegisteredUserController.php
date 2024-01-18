@@ -55,7 +55,6 @@ class RegisteredUserController extends Controller
         } elseif ($request->user()->account_type === 'agency') {
             return Redirect::route('agency.dashboard');
         } else {
-            Auth::logout();
             return Redirect::route('welcome');
         }
     }

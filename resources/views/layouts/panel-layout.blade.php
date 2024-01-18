@@ -21,11 +21,11 @@
         <header class="topbar" data-navbarbg="skin5">
             <nav class="navbar top-navbar navbar-expand-md navbar-dark">
                 <div class="navbar-header" data-logobg="skin5">
-                    <a class="navbar-brand" href="{{ route('admin.dashboard') }}">
+                    <a class="navbar-brand" href="{{ route('welcome') }}">
                         <b class="logo-icon ps-2">
                             <img src="{{ asset('assets/web-app/img/favicon.png') }}" alt="{{ config('app.name') }}" class="light-logo" width="25" />
                         </b>
-                        <h3 class="logo-text ms-3 my-auto">
+                        <h3 class="my-auto logo-text ms-3">
                             {{ config('app.name') }}
                         </h3>
                     </a>
@@ -43,9 +43,7 @@
                                 <img src="{{ asset('assets/panel/assets/images/users/1.jpg') }}" alt="user" class="rounded-circle" width="31" />
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="mdi mdi-account me-1 ms-1"></i> My Profile</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="mdi mdi-email me-1 ms-1"></i> Inbox</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="mdi mdi-settings me-1 ms-1"></i> Account Setting</a>
+                                <a class="dropdown-item" href="{{ route('password.change') }}"><i class="mdi mdi-settings me-1 ms-1"></i>Change Password</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="javascript:void(0)" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-power-off me-1 ms-1"></i> Logout</a>
                             </ul>
@@ -82,10 +80,10 @@
                     </div>
                 </div>
             </div>
-            <div class="container-fluid py-0">
+            <div class="py-0 container-fluid">
                 {{ $slot }}
             </div>
-            <footer class="footer text-center">
+            <footer class="text-center footer">
                 All Rights Reserved by
                 <a href="{{ route('welcome') }}" class="text-main">{{ config('app.name') }}</a>.
             </footer>

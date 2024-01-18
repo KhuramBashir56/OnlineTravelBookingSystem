@@ -12,11 +12,11 @@ class Package extends Model
     protected $table = 'packages';
 
     protected $casts = [
-        'start_date' => 'datetime',
-        'end_date' => 'datetime',
+        'start' => 'datetime',
+        'end' => 'datetime',
     ];
 
-    protected $fillable = ['user_id', 'agency_id', 'place_id', 'title', 'price', 'start_date', 'end_date', 'slug', 'description'];
+    protected $fillable = ['user_id', 'agency_id', 'place_id', 'title', 'price', 'start', 'end', 'duration', 'slug', 'description'];
 
     public function place()
     {
@@ -31,5 +31,10 @@ class Package extends Model
     public function guide()
     {
         return $this->belongsToMany(User::class, 'packages_guides', 'package_id', 'guide_id');
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class, 'package_id', 'id');
     }
 }

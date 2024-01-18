@@ -17,4 +17,9 @@ class Agency extends Model
     {
         return $this->belongsTo(User::class, 'owner_id', 'id');
     }
+
+    public function packages()
+    {
+        return $this->hasMany(Package::class, 'agency_id', 'id');
+    }
 }

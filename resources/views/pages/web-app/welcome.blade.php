@@ -52,65 +52,7 @@
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="search-form">
-                <form id="searchForm">
-                    <div class="row align-items-center">
-                        <div class="col-lg-11">
-                            <div class="row">
-                                <div class="col-lg-3">
-                                    <div class="select-box">
-                                        <i class="bx bx-map-alt"></i>
-                                        <select class="form-control">
-                                            <option data-display="Destination">Nothing</option>
-                                            <option value="1">North America</option>
-                                            <option value="2">Spain Madrid</option>
-                                            <option value="3">Japan Tokyo</option>
-                                            <option value="4">Europe City</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="select-box">
-                                        <i class="bx bx-calendar"></i>
-                                        <input type="text" class="date-select form-control" placeholder="Depart Date" required="required" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="select-box">
-                                        <i class="bx bx-package"></i>
-                                        <select class="form-control">
-                                            <option data-display="Travel Type">Travel Type</option>
-                                            <option value="1">City Tour</option>
-                                            <option value="2">Family Tours</option>
-                                            <option value="3">Seasonal Tours</option>
-                                            <option value="4">Outdoor Activities</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="select-box">
-                                        <i class="bx bx-time"></i>
-                                        <select class="form-control">
-                                            <option data-display="Tour Duration">Nothing</option>
-                                            <option value="1">5 Days</option>
-                                            <option value="2">12 Days</option>
-                                            <option value="3">21 Days</option>
-                                            <option value="4">30 Days</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-1">
-                            <button type="button" class="btn-search">
-                                <i class="bx bx-search-alt"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+        <livewire:web-app.pages.home.search-form />
     </div>
 
     <section id="destination" class="destination-section pt-100 pb-70 bg-light">
@@ -179,4 +121,5 @@
 
         </div>
     </section>
+    <x-web-app.agencies />
 </x-layouts.web-app-layout>

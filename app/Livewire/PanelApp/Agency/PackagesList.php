@@ -6,6 +6,7 @@ use App\Models\Package;
 use App\Models\PackagesGuides;
 use App\Models\TourPlace;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -22,7 +23,7 @@ class PackagesList extends Component
 
     public $places = [];
 
-    public $search, $package, $guide_id, $guides, $place_id, $title, $price, $description, $start_date, $end_date;
+    public $search, $package, $guide_id, $guides, $place_id, $title, $price, $description, $start, $end;
 
     public function newModalOpen()
     {
@@ -36,7 +37,7 @@ class PackagesList extends Component
     {
         $this->addNewAgencyModel = false;
         $this->places = [];
-        $this->reset(['place_id', 'title', 'price', 'description', 'start_date', 'end_date']);
+        $this->reset(['place_id', 'title', 'price', 'description', 'start', 'end']);
     }
 
     public function save()
@@ -45,8 +46,8 @@ class PackagesList extends Component
             'place_id' => ['required', 'integer', 'min:1'],
             'title' => ['required', 'string', 'max:56'],
             'price' => ['required', 'integer', 'max:9999999'],
-            'start_date' => ['required', 'date', 'after_or_equal:today'],
-            'end_date' => ['required', 'date', 'after_or_equal:start_date', 'after_or_equal:today'],
+            'start' => ['required', 'date', 'after_or_equal:today'],
+            'end' => ['required', 'date', 'after_or_equal:start', 'after_or_equal:today'],
             'description' => ['required', 'string', 'max:1500']
         ]);
         $agency_id = User::with(['agency' => function ($agency) {
@@ -58,8 +59,9 @@ class PackagesList extends Component
             'place_id' => $this->place_id,
             'title' => $this->title,
             'price' => $this->price,
-            'start_date' => $this->start_date,
-            'end_date' => $this->end_date,
+            'start' => $this->start,
+            'end' => $this->end,
+            'duration' => Carbon::parse($this->start)->diffInDays(\Carbon\Carbon::parse($this->end)),
             'slug' => str_replace(' ', '-', trim($this->title)),
             'description' => $this->description
         ]);
@@ -104,7 +106,7 @@ class PackagesList extends Component
         $this->validate([
             'guide_id' => ['required', 'integer', 'min:1']
         ]);
-        
+
         if (empty($exitGuide)) {
             PackagesGuides::create([
                 'package_id' => $this->package,
@@ -121,7 +123,7 @@ class PackagesList extends Component
     public function render()
     {
         return view('livewire.panel-app.agency.packages-list', [
-            'packages' => Package::where('status', '!=', 'deleted')->with(['place'])->where('title', 'LIKE', $this->search . '%')->paginate(100)
+            'packages' => Package::where('status', '!=', 'deleted')->with(['place'])->where('title', 'LIKE', $this->search . '%')->latest()->paginate(100)
         ]);
     }
 }

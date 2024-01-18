@@ -22,11 +22,6 @@ return new class extends Migration
             $table->string('address', 255);
             $table->foreignId('register_by')->constrained('users')->onDelete('cascade')->onUpdate('cascade')->comment('if NULL that mins fresh user');
             $table->enum('status', ['active', 'blocked', 'deleted'])->default('active');
-            $table->string('block_reason')->nullable();
-            $table->foreignId('blocked_by')->nullable()->constrained('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->timestamp('blocked_at')->nullable();
-            $table->string('delete_reason')->nullable();
-            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

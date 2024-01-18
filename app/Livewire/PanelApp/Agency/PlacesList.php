@@ -65,9 +65,9 @@ class PlacesList extends Component
     public function render()
     {
         return view('livewire.panel-app.agency.places-list', [
-            'cities' => City::all(),
+            'cities' => City::orderBy('name', 'asc')->get(),
             'places' => TourPlace::with(['city' => function ($query) {
-                $query->select('id', 'name');
+                $query->select('id', 'name')->orderBy('name', 'asc');
             }])->select('id', 'city_id', 'title', 'thumbnail', 'status')->where('status', '!=', 'deleted')->where('user_id', Auth::user()->id)->where('title', 'LIKE', $this->search . '%')->paginate(100)
         ]);
     }

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Gates\AdminGate;
 use App\Gates\AgencyGate;
+use App\Gates\UserGate;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -25,5 +26,6 @@ class AuthServiceProvider extends ServiceProvider
     {
         Gate::define('admin', [AdminGate::class, 'verify_admin_role']);
         Gate::define('agency', [AgencyGate::class, 'verify_agency_role']);
+        Gate::define('user', [UserGate::class, 'verify_user_role']);
     }
 }

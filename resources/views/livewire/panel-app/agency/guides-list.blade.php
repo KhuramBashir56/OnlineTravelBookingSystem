@@ -82,12 +82,10 @@
                         </div>
                     @endif
                     <x-panel-app.input type="text" wire:model="email" :for="__('email')" :title="__('Email Address')" required placeholder="Agency Representative Email Address" :error="$errors->first('email')" maxlength="48" />
-                    <x-panel-app.input type="password" wire:model="password" :for="__('password')" :title="__('Password')" required placeholder="Password" :error="$errors->first('password')" maxlength="32" minlength="8" />
-                    <x-panel-app.input type="password" wire:model="password_confirmation" :for="__('password_confirmation')" :title="__('Confirm Password')" required placeholder="Confirm Password" :error="$errors->first('password_confirmation')" maxlength="32" minlength="8" />
                 </div>
                 <div class="modal-footer">
                     <button type="button" wire:click="newModalClose" wire:confirm="Are you sure you want to destroy the form data?" wire:loading.attr="disabled" wire:offline.attr="disabled" class="btn btn-danger">Cancel</button>
-                    <button type="submit" class="btn btn-primary" wire:loading.attr="disabled" wire:offline.attr="disabled">Save</button>
+                    <button type="submit" class="btn btn-success" wire:loading.attr="disabled" wire:offline.attr="disabled">Save</button>
                 </div>
             </form>
         </x-panel-app.modal-box>

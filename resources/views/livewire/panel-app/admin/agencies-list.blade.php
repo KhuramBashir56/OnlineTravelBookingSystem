@@ -134,9 +134,28 @@
                             <td>Email</td>
                             <td>{{ $agency->agencyOwner->email }}</td>
                         </tr>
-
                     </tbody>
                 </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" wire:click="block({{ $agency->id }})" wire:loading.attr="disabled" wire:offline.attr="disabled" wire:confirm="Are you sure you want to block agency account?" class="btn btn-danger">Block Account</button>
+                <button type="button" wire:click="informationModalClose" wire:loading.attr="disabled" wire:offline.attr="disabled"  class="btn btn-secondary">Close</button>
+            </div>
+        </x-panel-app.modal-box>
+    @endif
+
+    @if ($blockReasonForm)
+        <x-panel-app.modal-box>
+            <div class="modal-header">
+                <h5 class="modal-title">Block Agency Account</h5>
+                <button type="button" wire:click="blockModalClose" wire:loading.attr="disabled" wire:offline.attr="disabled" wire:confirm="Are you destroy form data" class="btn-close" title="Close"></button>
+            </div>
+            <div class="modal-body">
+                <x-panel-app.textarea wire:model="reason" :for="__('reason')" :title="__('Block Reason')" :error="$errors->first('reason')" maxlength="255" placeholder="Write reason why you wont to block agency account" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" wire:click="blockAccount({{ $agency_id }})" wire:loading.attr="disabled" wire:offline.attr="disabled" class="btn btn-danger">Block Account</button>
+                <button type="button" wire:click="blockModalClose" wire:loading.attr="disabled" wire:offline.attr="disabled"  wire:confirm="Are you destroy form data" class="btn btn-secondary">Close</button>
             </div>
         </x-panel-app.modal-box>
     @endif

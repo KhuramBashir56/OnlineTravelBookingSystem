@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('comment');
-            $table->enum('status', ['published', 'unpublished', 'deleted'])->default('published');
+            $table->enum('status', ['published', 'unpublished', 'deleted'])->default('unpublished');
 
             $table->timestamps();
         });
