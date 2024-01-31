@@ -123,7 +123,9 @@ class PackagesList extends Component
     public function render()
     {
         return view('livewire.panel-app.agency.packages-list', [
-            'packages' => Package::where('status', '!=', 'deleted')->with(['place'])->where('title', 'LIKE', $this->search . '%')->latest()->paginate(100)
+            'packages' => Package::where(function ($query) {
+                $query->where('status', '!=', 'deleted')->where('user_id', Auth::user()->id);
+            })->with(['place'])->where('title', 'LIKE', $this->search . '%')->latest()->paginate(100)
         ]);
     }
 }
